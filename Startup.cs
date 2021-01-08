@@ -40,15 +40,16 @@ namespace project_p1
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            // app.UseHttpsRedirection();
+            // app.UseStaticFiles();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            // app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers(); //attribute routing
                 endpoints.MapRazorPages();
             });
         }
