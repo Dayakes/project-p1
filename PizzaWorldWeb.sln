@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "project-p1", "project-p1.csproj", "{84692154-CD2D-4C47-B40B-E3CF32D54CFB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaWorld.Client", "PizzaWorld.Client\PizzaWorld.Client.csproj", "{A2FBA973-C29E-4C32-A99F-20DBDF1E22A6}"
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
@@ -18,17 +18,17 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{84692154-CD2D-4C47-B40B-E3CF32D54CFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84692154-CD2D-4C47-B40B-E3CF32D54CFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84692154-CD2D-4C47-B40B-E3CF32D54CFB}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{84692154-CD2D-4C47-B40B-E3CF32D54CFB}.Debug|x64.Build.0 = Debug|Any CPU
-		{84692154-CD2D-4C47-B40B-E3CF32D54CFB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{84692154-CD2D-4C47-B40B-E3CF32D54CFB}.Debug|x86.Build.0 = Debug|Any CPU
-		{84692154-CD2D-4C47-B40B-E3CF32D54CFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84692154-CD2D-4C47-B40B-E3CF32D54CFB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84692154-CD2D-4C47-B40B-E3CF32D54CFB}.Release|x64.ActiveCfg = Release|Any CPU
-		{84692154-CD2D-4C47-B40B-E3CF32D54CFB}.Release|x64.Build.0 = Release|Any CPU
-		{84692154-CD2D-4C47-B40B-E3CF32D54CFB}.Release|x86.ActiveCfg = Release|Any CPU
-		{84692154-CD2D-4C47-B40B-E3CF32D54CFB}.Release|x86.Build.0 = Release|Any CPU
+		{A2FBA973-C29E-4C32-A99F-20DBDF1E22A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2FBA973-C29E-4C32-A99F-20DBDF1E22A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2FBA973-C29E-4C32-A99F-20DBDF1E22A6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A2FBA973-C29E-4C32-A99F-20DBDF1E22A6}.Debug|x64.Build.0 = Debug|Any CPU
+		{A2FBA973-C29E-4C32-A99F-20DBDF1E22A6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A2FBA973-C29E-4C32-A99F-20DBDF1E22A6}.Debug|x86.Build.0 = Debug|Any CPU
+		{A2FBA973-C29E-4C32-A99F-20DBDF1E22A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2FBA973-C29E-4C32-A99F-20DBDF1E22A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2FBA973-C29E-4C32-A99F-20DBDF1E22A6}.Release|x64.ActiveCfg = Release|Any CPU
+		{A2FBA973-C29E-4C32-A99F-20DBDF1E22A6}.Release|x64.Build.0 = Release|Any CPU
+		{A2FBA973-C29E-4C32-A99F-20DBDF1E22A6}.Release|x86.ActiveCfg = Release|Any CPU
+		{A2FBA973-C29E-4C32-A99F-20DBDF1E22A6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

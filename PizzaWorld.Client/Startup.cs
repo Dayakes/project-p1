@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace project_p1
+namespace PizzaWorld.Client
 {
     public class Startup
     {
@@ -48,10 +48,9 @@ namespace project_p1
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers(); //attribute routing
-                // endpoints.MapControllerRoute(
-                //     name: "default",
-                //     pattern: "{controller=Home}/{action=Index}/{id?}"); global routing
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
