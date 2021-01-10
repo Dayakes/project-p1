@@ -1,10 +1,10 @@
 using System.Collections.Generic;
+using PizzaWorld.Domain.Models;
 
 namespace PizzaWorld.Client.Models
 {
     public class StoreViewModel
     {
-        public List<Order> Orders { get; set; }
-        public string Name { get; set; }
+        public List<Store> Stores { get; set; }
     }
 }

@@ -1,0 +1,7 @@
+@model PizzaWorld.Client.Models.StoreViewModel
+<ul>
+@foreach (var store in ViewBag.Stores)
+{
+    <li> <input type="radio" name="store" id="@store.StoreId">@store.Name</li>
+}
+</ul>
