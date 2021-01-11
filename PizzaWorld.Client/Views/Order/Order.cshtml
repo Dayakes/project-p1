@@ -2,5 +2,12 @@
 
 <form asp-action="post" asp-controller="order" method="POST">
     @Html.AntiForgeryToken();
-    
+    @foreach (var item in Model.Stores)
+    {
+        <input type="radio" name="store" id="@item.Name" value="@item.Name">
+        <label for="@item.Name">@item.Name</label>
+        
+        @Html.RadioButtonFor(m => m.Stores, Model.Store)
+    }
+
 </form>
