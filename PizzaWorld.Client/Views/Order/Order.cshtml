@@ -1,7 +1,6 @@
 @model PizzaWorld.Client.Models.OrderViewModel
-<ol>
-@foreach (var pizza in ViewBag.Order)
-{
-    <li>@pizza.Name</li>
-}
-</ol>
+
+<form asp-action="post" asp-controller="order" method="POST">
+    @Html.AntiForgeryToken();
+    
+</form>

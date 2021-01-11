@@ -10,34 +10,32 @@ namespace PizzaWorld.Client.Controllers
     [Route("[controller]")]
     public class OrderController : Controller
     {
-        [HttpGet("{storeid}")]
+        [HttpGet]
         public IActionResult Get()
-        { //get all orders for one store
-            var Order = new List<APizzaModel>();
-            Order.Add(new MeatPizza());
-            Order.Add(new VeggiePizza());
-            Order.Add(new HawaiianPizza());
-
-            ViewBag.Order = Order;
+        { 
             return View("Order");
         }
-        [HttpGet("{storeid},{orderid}")]
-        public IActionResult Get(string StoreId, string OrderId)
+        [HttpGet("{id}")]
+        public IActionResult Get(string id)
         {
-            //get all the information for one order
-            return View();
+            return View("Order", new OrderViewModel(id));
         }
-        public void Post()
+        [HttpPost]
+        public IActionResult Post(OrderViewModel order)
         {
+            if(ModelState.IsValid)
+            {
+                return View("OrderPass");
+            }
+            return View("OrderFail");
+        }
+        // public void Set()
+        // {
 
-        }
-        public void Set()
-        {
+        // }
+        // public void Delete()
+        // {
 
-        }
-        public void Delete()
-        {
-
-        }
+        // }
     }
 }

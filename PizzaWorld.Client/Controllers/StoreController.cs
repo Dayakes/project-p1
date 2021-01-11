@@ -24,10 +24,10 @@ namespace PizzaWorld.Client.Controllers
             ViewBag.Stores = stores.Stores;
             return View("Store");
         }
-        [HttpGet("{store}")]
-        public IActionResult Get(string store)
+        [HttpGet("{storeid}")]
+        public IActionResult Get(string storeid)
         {
-            return View("Store",store);
+            return View("Store",storeid);
         }
         // public void Post()
         // {
