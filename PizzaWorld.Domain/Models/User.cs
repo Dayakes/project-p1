@@ -5,7 +5,7 @@ using PizzaWorld.Domain.Abstracts;
 
 namespace PizzaWorld.Domain.Models
 {
-    public class User
+    public class User : AModel
     {
         /*
         [required] must be able to view/list its order history
@@ -13,7 +13,6 @@ namespace PizzaWorld.Domain.Models
         [required] must be able to only order once every 2-hour period
         */
         public List<Order> Orders { get; set; }
-        public long UserId { get; set; }
         public string Name { get; set; }
 
 

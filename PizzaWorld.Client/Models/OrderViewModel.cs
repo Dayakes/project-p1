@@ -8,7 +8,6 @@ namespace PizzaWorld.Client.Models
 {
     public class OrderViewModel
     {
-        private readonly SqlClient _sql = new SqlClient();
         public List<APizzaModel> Pizzas { get; set; }
         public List<Store> Stores { get; set; }
         [Required]
@@ -19,9 +18,7 @@ namespace PizzaWorld.Client.Models
         public OrderViewModel()
         {
             //this is where we access the db, placeholder data below
-            Pizzas = _sql.ReadPizzas();
 
-            Stores = _sql.ReadStores().ToList();
             PizzaSelection = new List<APizzaModel>();
         }
         public OrderViewModel(string id)

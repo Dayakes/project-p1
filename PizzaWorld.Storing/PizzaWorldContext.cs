@@ -15,25 +15,18 @@ public class PizzaWorldContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
-        builder.UseSqlServer("Server=darrenpizzaworldp0.database.windows.net;Initial Catalog=PizzaWorldDb;User ID=sqladmin;Password=;");
+        builder.UseSqlServer();
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.Entity<Store>().HasKey(s => s.StoreId);
+        builder.Entity<Store>().HasKey(s => s.EntityId);
 
-        builder.Entity<Order>().HasKey(o => o.OrderId);
+        builder.Entity<Order>().HasKey(o => o.EntityId);
 
-        builder.Entity<User>().HasKey(u => u.UserId);
-        builder.Entity<User>()
-            .Property(u => u.Name)
-            .HasColumnName("Name")
-            .IsRequired();
+        builder.Entity<User>().HasKey(u => u.EntityId);
 
-        builder.Entity<APizzaModel>().HasKey(p => p.PizzaId);
-        builder.Entity<APizzaModel>().OwnsOne(p => p.Crust);
-        builder.Entity<APizzaModel>().OwnsOne(p => p.Size);
-        builder.Entity<APizzaModel>().OwnsMany(p => p.Toppings);
+        builder.Entity<APizzaModel>().HasKey(p => p.EntityId);
 
         
         SeedData(builder);
@@ -42,14 +35,13 @@ public class PizzaWorldContext : DbContext
     {
         builder.Entity<Store>().HasData(new List<Store>
             {
-                new Store(){Name = "Dominos",StoreId = System.DateTime.Now.Ticks},
-                new Store(){Name = "Pizza Hut",StoreId = System.DateTime.Now.Ticks}
+                new Store(){Name = "Dominos",EntityId = System.DateTime.Now.Ticks},
+                new Store(){Name = "Pizza Hut",EntityId = System.DateTime.Now.Ticks}
             }
         );
         builder.Entity<User>().HasData(new List<User>
         {
-            new User(){Name = "Darren",UserId = System.DateTime.Now.Ticks},
-            new User(){Name = "Fred",UserId = System.DateTime.Now.Ticks}
+            new User(){Name = "Darren",EntityId = System.DateTime.Now.Ticks},
         });
     }
 }

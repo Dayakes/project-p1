@@ -4,14 +4,12 @@ using PizzaWorld.Domain.Models;
 
 namespace PizzaWorld.Domain.Abstracts
 {
-    public class APizzaModel
+    public class APizzaModel : AModel
     {
         public Crust Crust { get; set; }
         public Size Size { get; set; }
         public ICollection<Topping> Toppings { get; set; }
         public double Price { get; set; }
-        public long PizzaId { get; set; }
-        public long OrderId { get; set; }
         public string Name { get; set; }
         protected APizzaModel()
         {

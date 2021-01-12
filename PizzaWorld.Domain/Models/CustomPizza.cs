@@ -1,6 +1,8 @@
+using PizzaWorld.Domain.Abstracts;
+
 namespace PizzaWorld.Domain.Models
 {
-    public class CustomPizza
+    public class CustomPizza : APizzaModel
     {
         
     }

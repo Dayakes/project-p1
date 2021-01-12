@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -6,7 +7,7 @@ using PizzaWorld.Domain.Factories;
 
 namespace PizzaWorld.Domain.Models
 {
-    public class Order
+    public class Order : AModel
     {
         /*
         [required] each order must be able to view/list/edit its collection of pizzas
@@ -16,9 +17,8 @@ namespace PizzaWorld.Domain.Models
         */
         private GenericPizzaFactory _pizzaFactory = new GenericPizzaFactory();
         public List<APizzaModel> Pizzas { get; set; }
-        public long OrderId { get; set; }
-        public long UserId { get; set; }
-        public long StoreId { get; set; }
+        public long StoreEntityId { get; set; }
+        public DateTime DateModified { get; set; }
         public double TotalPrice
         {
             get
@@ -42,9 +42,6 @@ namespace PizzaWorld.Domain.Models
                 new VeggiePizza(),
                 new HawaiianPizza()
             };
-            OrderId = System.DateTime.Now.Ticks;
-            StoreId = System.DateTime.Now.Ticks;
-            UserId = System.DateTime.Now.Ticks;
         }
         public Order(List<APizzaModel> pizzas)
         {

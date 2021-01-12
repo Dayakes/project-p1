@@ -5,12 +5,10 @@ using PizzaWorld.Domain.Abstracts;
 
 namespace PizzaWorld.Domain.Models
 {
-    public class Store
+    public class Store : AModel
     {
         public string Name { get; set; }
-
         public List<Order> Orders { get; set; }
-        public long StoreId { get; set; }
         public Store()
         {
             Name = "default";
@@ -19,7 +17,6 @@ namespace PizzaWorld.Domain.Models
                 new Order(),
                 new Order()
             };
-            StoreId = DateTime.Now.Ticks;
         }
         public void CreateOrder(List<APizzaModel> Pizzas)
         {

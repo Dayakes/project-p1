@@ -7,7 +7,7 @@ using PizzaWorld.Domain.Abstracts;
 
 namespace PizzaWorld.Domain.Models
 {
-    public class Topping
+    public class Topping : AModel
     {
         public string Name { get; set; }
 
