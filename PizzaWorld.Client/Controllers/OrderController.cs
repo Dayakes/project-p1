@@ -26,13 +26,13 @@ namespace PizzaWorld.Client.Controllers
                 var order = new Order()
                 {
                     DateModified = System.DateTime.Now,
-                    StoreEntityId = _ctx.GetStores().FirstOrDefault(s => s.Name == model.Store).EntityId
+                    store = _ctx.GetStores().FirstOrDefault(s => s.Name == model.Store)
                 };
 
                 _ctx.AddOrder(order);
                 _ctx.Update();
 
-                return View("OrderPass");
+                return View("OrderPass"); 
             }
             return View("OrderFail");
         }

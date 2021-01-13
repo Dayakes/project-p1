@@ -4,7 +4,7 @@
     @foreach (var item in Model.Stores)
     {
         @Html.AntiForgeryToken();
-        <input type="radio" name="store" id="@item.EntityId" value="@item.Name">
+        <input type="radio" name="store" id="@item.EntityId" value="@item.EntityId">
         <label for="@item.EntityId">@item.Name</label>
     }
     <button type="submit">Place Order</button>
