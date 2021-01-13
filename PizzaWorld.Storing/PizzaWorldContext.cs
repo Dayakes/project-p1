@@ -11,7 +11,7 @@ public class PizzaWorldContext : DbContext
     public DbSet<Size> Sizes { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<APizzaModel> Pizzas { get; set; }
-
+    public PizzaWorldContext(DbContextOptions<PizzaWorldContext> options) : base(options) { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
@@ -21,6 +21,7 @@ public class PizzaWorldContext : DbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.Entity<Store>().HasKey(s => s.EntityId);
+        // builder.Entity<Store>().HasMany(s => s.Orders).WithOne(o => o.StoreEntityId);
 
         builder.Entity<Order>().HasKey(o => o.EntityId);
 
@@ -28,7 +29,7 @@ public class PizzaWorldContext : DbContext
 
         builder.Entity<APizzaModel>().HasKey(p => p.EntityId);
 
-        
+
         SeedData(builder);
     }
     private void SeedData(ModelBuilder builder)

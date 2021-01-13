@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PizzaWorld.Storing;
 
 namespace PizzaWorld.Client
 {
@@ -24,6 +26,11 @@ namespace PizzaWorld.Client
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<PizzaWorldContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("sqlserver"));
+            });
+            services.AddScoped<PizzaWorldRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

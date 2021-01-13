@@ -16,6 +16,7 @@ namespace PizzaWorld.Domain.Models
         [required] each order must be limited to a collection of pizzas of no more than 50
         */
         private GenericPizzaFactory _pizzaFactory = new GenericPizzaFactory();
+        public Store store { get; set; }
         public List<APizzaModel> Pizzas { get; set; }
         public long StoreEntityId { get; set; }
         public DateTime DateModified { get; set; }
@@ -46,7 +47,7 @@ namespace PizzaWorld.Domain.Models
         public Order(List<APizzaModel> pizzas)
         {
             Pizzas = pizzas;
-            
+
         }
         public override string ToString()
         {
