@@ -5,6 +5,7 @@ using PizzaWorld.Storing;
 
 namespace PizzaWorld.Client.Controllers
 {
+    [Route("[controller]")]
     public class CustomerController : Controller
     {
         private readonly PizzaWorldRepository _ctx;
