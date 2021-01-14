@@ -8,7 +8,7 @@ namespace PizzaWorld.Domain.Models
     {
         public MeatPizza(Size size,Crust crust)
         {
-            AddName("Meat Lovers Pizza");
+            AddName("Meat Pizza");
             AddCrust(crust);
             AddSize(size);
             AddToppings();
@@ -16,7 +16,7 @@ namespace PizzaWorld.Domain.Models
         }
         public MeatPizza()
         {
-            Name = "Meat Lovers Pizza";
+            Name = "Meat Pizza";
             Crust = new Crust();
             Size = new Size();
             Toppings = new List<Topping>(){

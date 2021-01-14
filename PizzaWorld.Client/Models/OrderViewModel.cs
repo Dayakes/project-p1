@@ -10,9 +10,8 @@ namespace PizzaWorld.Client.Models
     {
         public List<APizzaModel> Pizzas { get; set; }
         public List<Store> Stores { get; set; }
-        // [Required]
-        // [Range(1,50)]
-        public List<APizzaModel> PizzaSelection { get; set; }
+        [Required]
+        public string[] PizzaSelection { get; set; }
         [Required]
         public string Store { get; set; }
 

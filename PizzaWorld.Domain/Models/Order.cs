@@ -38,15 +38,11 @@ namespace PizzaWorld.Domain.Models
         // }
         public Order()
         {
-            // Pizzas = new List<APizzaModel>(){
-            //     new MeatPizza(),
-            //     new VeggiePizza(),
-            //     new HawaiianPizza()
-            // };
+            Pizzas = new List<APizzaModel>();
         }
         public Order(List<APizzaModel> pizzas)
         {
-            // Pizzas = pizzas;
+            Pizzas = pizzas;
 
         }
         public override string ToString()

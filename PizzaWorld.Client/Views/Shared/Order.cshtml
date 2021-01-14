@@ -9,10 +9,9 @@
     }
     @foreach (var pizza in Model.Pizzas)
     {
-        <input type="checkbox" name="PizzaSelection" id="@pizza.Name">
+        <input type="checkbox" name="PizzaSelection" id="@pizza.Name" value="@pizza.Name">
         <label for="@pizza.Name">@pizza.Name</label>
     }
     <button type="submit">Place Order</button>
 
 </form>
- 
