@@ -15,38 +15,38 @@ namespace PizzaWorld.Domain.Models
         [required] each order must be limited to a total pricing of no more than $250       if the total would go over $250
         [required] each order must be limited to a collection of pizzas of no more than 50
         */
-        private GenericPizzaFactory _pizzaFactory = new GenericPizzaFactory();
+        // private GenericPizzaFactory _pizzaFactory = new GenericPizzaFactory();
         public Store store { get; set; }
-        public List<APizzaModel> Pizzas { get; set; }
+        // public List<APizzaModel> Pizzas { get; set; }
         public long StoreEntityId { get; set; }
         public DateTime DateModified { get; set; }
-        public double TotalPrice
-        {
-            get
-            {
-                double calc = 0;
-                foreach (APizzaModel pizza in Pizzas)
-                {
-                    calc = calc + pizza.Price;
-                }
-                return calc;
-            }
-            set
-            {
-                ComputePrice();
-            }
-        }
+        // public double TotalPrice
+        // {
+        //     get
+        //     {
+        //         double calc = 0;
+        //         foreach (APizzaModel pizza in Pizzas)
+        //         {
+        //             calc = calc + pizza.Price;
+        //         }
+        //         return calc;
+        //     }
+        //     set
+        //     {
+        //         ComputePrice();
+        //     }
+        // }
         public Order()
         {
-            Pizzas = new List<APizzaModel>(){
-                new MeatPizza(),
-                new VeggiePizza(),
-                new HawaiianPizza()
-            };
+            // Pizzas = new List<APizzaModel>(){
+            //     new MeatPizza(),
+            //     new VeggiePizza(),
+            //     new HawaiianPizza()
+            // };
         }
         public Order(List<APizzaModel> pizzas)
         {
-            Pizzas = pizzas;
+            // Pizzas = pizzas;
 
         }
         public override string ToString()
@@ -54,22 +54,22 @@ namespace PizzaWorld.Domain.Models
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("::: START OF ORDER :::\n");
             sb.AppendLine("You ordered these pizzas:");
-            foreach (var p in Pizzas)
-            {
-                sb.AppendLine(p.ToString());
-            }
-            sb.AppendLine($"Total price for this order: {TotalPrice}");
+            // foreach (var p in Pizzas)
+            // {
+            //     sb.AppendLine(p.ToString());
+            // }
+            // sb.AppendLine($"Total price for this order: {TotalPrice}");
             sb.AppendLine("::: END OF ORDER :::\n");
             return sb.ToString();
         }
-        public double ComputePrice()
-        {
-            double calc = 0;
-            foreach (APizzaModel pizza in Pizzas)
-            {
-                calc = calc + pizza.Price;
-            }
-            return calc;
-        }
+        // public double ComputePrice()
+        // {
+        //     double calc = 0;
+        //     foreach (APizzaModel pizza in Pizzas)
+        //     {
+        //         calc = calc + pizza.Price;
+        //     }
+        //     return calc;
+        // }
     }
 }

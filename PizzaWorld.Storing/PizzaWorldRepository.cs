@@ -16,6 +16,10 @@ namespace PizzaWorld.Storing
         {
             return _ctx.Stores;
         }
+        public Store GetStore(string id)
+        {
+            return _ctx.Stores.FirstOrDefault(Store => Store.EntityId == long.Parse(id));
+        }
         public void AddOrder(Order order)
         {
             _ctx.Orders.Add(order);

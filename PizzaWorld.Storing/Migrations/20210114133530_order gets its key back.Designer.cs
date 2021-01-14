@@ -3,14 +3,16 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace PizzaWorld.Storing.Migrations
 {
     [DbContext(typeof(PizzaWorldContext))]
-    partial class PizzaWorldContextModelSnapshot : ModelSnapshot
+    [Migration("20210114133530_order gets its key back")]
+    partial class ordergetsitskeyback
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,12 +57,12 @@ namespace PizzaWorld.Storing.Migrations
                     b.HasData(
                         new
                         {
-                            EntityId = 637462104075258968L,
+                            EntityId = 637462101299024663L,
                             Name = "Dominos"
                         },
                         new
                         {
-                            EntityId = 637462104075270098L,
+                            EntityId = 637462101299024702L,
                             Name = "Pizza Hut"
                         });
                 });

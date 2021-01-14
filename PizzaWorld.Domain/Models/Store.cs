@@ -12,11 +12,7 @@ namespace PizzaWorld.Domain.Models
         public Store()
         {
             Name = "default";
-            Orders = new List<Order>(){
-                new Order(),
-                new Order(),
-                new Order()
-            };
+            Orders = new List<Order>();
         }
         public void CreateOrder(List<APizzaModel> Pizzas)
         {

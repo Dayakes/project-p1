@@ -1,12 +1,15 @@
 @model PizzaWorld.Client.Models.OrderViewModel
 
 <form asp-action="post" asp-controller="order" method="POST">
-    @foreach (var item in Model.Stores)
+    @foreach (var store in Model.Stores)
     {
         @Html.AntiForgeryToken();
-        <input type="radio" name="store" id="@item.EntityId" value="@item.EntityId">
-        <label for="@item.EntityId">@item.Name</label>
+        <input type="radio" name="Store" id="@store.EntityId" value="@store.EntityId">
+        <label for="@store.EntityId">@store.Name</label>
     }
+    <br>
+    @Html.Partial("Pizzas")
+    <br>
     <button type="submit">Place Order</button>
 
 </form>

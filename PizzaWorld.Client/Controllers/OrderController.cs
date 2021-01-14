@@ -21,20 +21,17 @@ namespace PizzaWorld.Client.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Post(OrderViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                var order = new Order()
-                {
-                    DateModified = System.DateTime.Now,
-                    store = _ctx.GetStores().FirstOrDefault(s => s.Name == model.Store)
-                };
-
+                Order order = new Order();
+                order.DateModified = System.DateTime.Now;
+                order.store = _ctx.GetStore(model.Store);
                 _ctx.AddOrder(order);
                 _ctx.Update();
 
-                return View("OrderPass"); 
+                return View("OrderPass");
             }
-            return View("OrderFail");
+            return View("Customer", model);
         }
     }
 }
