@@ -7,10 +7,10 @@ public class PizzaWorldContext : DbContext
 {
     public DbSet<Store> Stores { get; set; }
     // public DbSet<User> Users { get; set; }
-    // public DbSet<Crust> Crusts { get; set; }
-    // public DbSet<Size> Sizes { get; set; }
+    public DbSet<Crust> Crusts { get; set; }
+    public DbSet<Size> Sizes { get; set; }
     public DbSet<Order> Orders { get; set; }
-    // public DbSet<APizzaModel> Pizzas { get; set; }
+    public DbSet<APizzaModel> Pizzas { get; set; }
     public PizzaWorldContext(DbContextOptions<PizzaWorldContext> options) : base(options) { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
@@ -20,15 +20,19 @@ public class PizzaWorldContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.Entity<Store>().HasKey(s => s.EntityId);
-        builder.Entity<Store>().HasMany(s => s.Orders).WithOne(o => o.store);
-        // builder.Entity<Store>().HasMany(s => s.Orders).WithOne(o => o.StoreEntityId);
+        builder.Entity<Store>().HasKey(store => store.EntityId);
+        builder.Entity<Store>().HasMany(store => store.Orders).WithOne(order => order.store);
 
-        builder.Entity<Order>().HasKey(o => o.EntityId);
+        builder.Entity<Order>().HasKey(order => order.EntityId);
 
         // builder.Entity<User>().HasKey(u => u.EntityId);
 
-        // builder.Entity<APizzaModel>().HasKey(p => p.EntityId);
+        builder.Entity<APizzaModel>().HasKey(pizza => pizza.EntityId);
+        builder.Entity<APizzaModel>().OwnsOne(pizza => pizza.Crust);
+        builder.Entity<APizzaModel>().OwnsOne(pizza => pizza.Size);
+        builder.Entity<APizzaModel>().HasMany(pizza => pizza.Toppings);
+
+        builder.Entity<Topping>().HasKey(topping => topping.EntityId);
 
 
         SeedData(builder);

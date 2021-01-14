@@ -26,12 +26,28 @@ namespace PizzaWorld.Client.Controllers
                 Order order = new Order();
                 order.DateModified = System.DateTime.Now;
                 order.store = _ctx.GetStore(model.Store);
+                foreach(var pizza in model.PizzaSelection)
+                {
+                    if(pizza.Equals("MeatPizza"))
+                    {
+                        order.Pizzas.Add(new MeatPizza());
+                    }
+                    else if(pizza.Equals("VeggiePizza"))
+                    {
+                        order.Pizzas.Add(new VeggiePizza());
+                    }
+                    else if(pizza.Equals("HawaiianPizza"))
+                    {
+                        order.Pizzas.Add(new HawaiianPizza());
+                    }
+                }
+
                 _ctx.AddOrder(order);
                 _ctx.Update();
 
                 return View("OrderPass");
             }
-            return View("Customer", model);
+            return View("OrderFail", model);
         }
     }
 }
