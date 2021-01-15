@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using PizzaWorld.Domain.Abstracts;
 using PizzaWorld.Domain.Models;
 
 namespace PizzaWorld.Storing
@@ -15,6 +16,22 @@ namespace PizzaWorld.Storing
         public IEnumerable<Store> GetStores()
         {
             return _ctx.Stores;
+        }
+        public IEnumerable<T> GetAll<T>() where T : AModel
+        {
+            return _ctx.Set<T>().ToList();
+        }
+        public T Get<T>(int id) where T : AModel
+        {
+            return _ctx.Set<T>().Find(id);
+        }
+        public void Add<T>(T item) where T : AModel
+        {
+            _ctx.Set<T>().Add(item);
+        }
+        public void Remove<T>(T item) where T : AModel
+        {
+            _ctx.Set<T>().Remove(item);
         }
         public Store GetStore(string id)
         {

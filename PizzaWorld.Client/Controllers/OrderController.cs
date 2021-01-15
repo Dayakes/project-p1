@@ -25,7 +25,7 @@ namespace PizzaWorld.Client.Controllers
             {
                 Order order = new Order();
                 order.DateModified = System.DateTime.Now;
-                order.store = _ctx.GetStore(model.Store);
+                order.store = _ctx.Get<Store>(int.Parse(model.Store));
 
                 foreach (var pizza in model.PizzaSelection)
                 {

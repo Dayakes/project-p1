@@ -14,7 +14,6 @@ namespace PizzaWorld.Client.Models
         public string[] PizzaSelection { get; set; }
         [Required]
         public string Store { get; set; }
-
         public OrderViewModel()
         {
             Pizzas = new List<APizzaModel>(){
