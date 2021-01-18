@@ -1,0 +1,37 @@
+@model PizzaWorld.Client.Models.OrderViewModel
+@{
+    ViewBag.Title = "Order - Overview";
+    Layout = "_CustomLayout";
+}
+
+
+<form>
+    <section class="container">
+        <h3>Select a Pizza</h3>
+        @foreach (var pizza in Model.Pizzas)
+        {
+            <input type="radio" name="Pizza" id="@pizza.Name" value="@pizza.Name" required>
+            <label for="@pizza.Name">@pizza.Name</label>
+        }
+    </section>
+    <section class="container">
+        <h3>Select a Size</h3>
+        <input type="radio" name="Size" value="small" id="small" required>
+        <label for="small">Small</label>
+        <input type="radio" name="Size" value="medium" id="medium">
+        <label for="medium">Medium</label>
+        <input type="radio" name="Size" value="large" id="large">
+        <label for="large">Large</label>
+    </section>
+
+    <section class="container">
+        <h3>Select a Crust</h3>
+        <input type="radio" name="Crust" value="thin" id="thin" required>
+        <label for="thin">Thin</label>
+        <input type="radio" name="Crust" value="regular" id="regular">
+        <label for="regular">Regular</label>
+        <input type="radio" name="Crust" value="stuffed" id="stuffed">
+        <label for="stuffed">Stuffed</label>
+    </section>
+    <button type="submit">Add Pizza to Order</button>
+</form>

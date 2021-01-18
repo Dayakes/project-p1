@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Web;
 using System.Text;
 using PizzaWorld.Domain.Abstracts;
 
@@ -14,6 +16,8 @@ namespace PizzaWorld.Domain.Models
         */
         public List<Order> Orders { get; set; }
         public string Name { get; set; }
+        [NotMapped]
+        public Order Workingorder { get; set; }
 
 
         public User()

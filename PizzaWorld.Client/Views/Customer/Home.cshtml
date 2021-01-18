@@ -8,4 +8,10 @@
     Hello @Model.Name
 </section>
 
-@Html.Partial("Order", Model.Order)
+<form asp-controller="Order" asp-action="StartNewOrder">
+    <button type="submit">Start New Order</button>
+</form>
+
+<section>
+
+</section>

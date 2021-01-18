@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using Microsoft.AspNetCore.Mvc;
 using PizzaWorld.Client.Models;
 using PizzaWorld.Domain.Models;
@@ -25,13 +26,10 @@ namespace PizzaWorld.Client.Controllers
         }
         public IActionResult Welcome(LoginViewModel LoginModel)
         {
-            _ctx.CurrentUser = new User();
-            _ctx.CurrentUser = _ctx.GetUser(long.Parse(LoginModel.CurrentUserId));
-
             var customer = new CustomerViewModel();
-            customer.UserId = _ctx.CurrentUser.EntityId;
-            customer.Name = _ctx.CurrentUser.Name;
-            
+            customer.UserId = long.Parse(LoginModel.CurrentUserId);
+            customer.Name = LoginModel.CurrentUserName;
+
             customer.Order = new OrderViewModel(){
                 Stores = _ctx.GetStores().ToList()
             };
