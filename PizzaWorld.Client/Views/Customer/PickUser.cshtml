@@ -1,0 +1,17 @@
+@model PizzaWorld.Client.Models.LoginViewModel
+@{
+    ViewBag.Title = "Customer - Login";
+    Layout = "_CustomLayout";
+}
+<form asp-controller="Customer" asp-action="Welcome">
+@foreach(var user in Model.AllUsers)
+{
+    <input type="radio" name="CurrentUserId" id="@user.Name" value="@user.EntityId">
+    <label for="@user.Name">@user.Name</label>
+}
+<button>Sign In</button>
+</form>
+<form asp-controller="Customer" asp-action="NewUser">
+    <input type="text" name="NewUser" value="Enter First Name">
+    <button>New User</button>
+</form>

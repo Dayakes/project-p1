@@ -9,6 +9,7 @@ namespace PizzaWorld.Storing
     {
         private PizzaWorldContext _ctx;
         private int MyProperty { get; set; }
+        public User CurrentUser { get; set; }
 
         public PizzaWorldRepository(PizzaWorldContext context)
         {
@@ -17,6 +18,14 @@ namespace PizzaWorld.Storing
         public IEnumerable<Store> GetStores()
         {
             return _ctx.Stores;
+        }
+        public IEnumerable<User> GetUsers()
+        {
+            return _ctx.Users;
+        }
+        public User GetUser(long id)
+        {
+            return _ctx.Users.FirstOrDefault(user => user.EntityId == id);
         }
         public IEnumerable<T> GetAll<T>() where T : AModel
         {

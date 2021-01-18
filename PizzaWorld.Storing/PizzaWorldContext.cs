@@ -48,6 +48,8 @@ public class PizzaWorldContext : DbContext
         builder.Entity<User>().HasData(new List<User>
         {
             new User(){Name = "Darren",EntityId = System.DateTime.Now.Ticks},
+            new User(){Name = "Fred",EntityId = System.DateTime.Now.Ticks},
+            new User(){Name = "Isaiah",EntityId = System.DateTime.Now.Ticks}
         });
     }
 }
