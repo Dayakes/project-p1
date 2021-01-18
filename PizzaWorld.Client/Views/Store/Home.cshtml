@@ -1,0 +1,10 @@
+@model PizzaWorld.Client.Models.StoreViewModel
+@{
+    ViewBag.Title = "Store - Home";
+    Layout = "_CustomLayout";
+}
+<section class="col-12">
+    <h2>Total revenue at this location: $@Model.TotalRevenue</h2>
+    @Html.Partial("OrderHistory" , Model.CurrentStore)
+</section>
+@Html.Partial("logout")

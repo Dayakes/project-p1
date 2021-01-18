@@ -56,9 +56,9 @@ namespace PizzaWorld.Client
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Customer}/{action=login}/{id?}");
+                // endpoints.MapControllerRoute(
+                //     name: "default",
+                //     pattern: "{controller=Customer}/{action=login}/{id?}");
             });
         }
     }

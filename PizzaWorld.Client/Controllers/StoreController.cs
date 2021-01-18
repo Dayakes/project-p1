@@ -1,59 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using PizzaWorld.Client.Models;
+using PizzaWorld.Domain.Models;
+using PizzaWorld.Storing;
 
 namespace PizzaWorld.Client.Controllers
 {
     [Route("[controller]")]
     public class StoreController : Controller
     {
-        [HttpGet]
-        public IActionResult Get()
-        {   
-            var stores = new StoreViewModel();
-            stores.Stores = new List<Domain.Models.Store>(){
-                new Domain.Models.Store(),
-                new Domain.Models.Store(),
-                new Domain.Models.Store(),
-                new Domain.Models.Store(),
-                new Domain.Models.Store()
-            };
-            
-
-            ViewBag.Stores = stores.Stores;
-            return View("Store");
-        }
-        [HttpGet("{storeid}")]
-        public IActionResult Get(string storeid)
+        private readonly PizzaWorldRepository _ctx;
+        public StoreController(PizzaWorldRepository context)
         {
-            return View("Store",storeid);
+            _ctx = context;
         }
-        // public void Post()
-        // {
+        [HttpGet]
+        public IActionResult Login()
+        {
+            var StoreLoginModel = new StoreLoginViewModel();
+            StoreLoginModel.AllStores = _ctx.GetStores().ToList();
 
-        // }
-        // public void Put()
-        // {
+            return View("PickStore", StoreLoginModel);
+        }
+        public IActionResult Welcome(StoreLoginViewModel LoginModel)
+        {
+            var StoreModel = new StoreViewModel();
+            StoreModel.CurrentStore =  _ctx.GetStore(LoginModel.CurrentStoreId);
+            StoreModel.Name = StoreModel.CurrentStore.Name;
+            StoreModel.StoreId = StoreModel.CurrentStore.EntityId.ToString();
+            foreach(var order in StoreModel.CurrentStore.Orders)
+            {
+                StoreModel.TotalRevenue += order.TotalPrice;
+            }
 
-        // }
-        // public void Delete()
-        // {
-
-        // }
-        // [HttpGet]
-        // public IEnumerable<OrderViewModel> List()
-        // {
-        //     return new List<OrderViewModel>()
-        //     {
-        //         new OrderViewModel()
-        //         {
-        //             Pizzas = new List<PizzaViewModel>()
-        //             {
-        //                 new PizzaViewModel{Crust = "regular", Size = "medium", Price = 10}
-        //             }
-        //         }
-        //     };
-        // }
+            return View("Home" , StoreModel);
+        }
     }
 }
+

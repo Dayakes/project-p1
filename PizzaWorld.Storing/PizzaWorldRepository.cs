@@ -49,7 +49,10 @@ namespace PizzaWorld.Storing
         }
         public Store GetStore(string id)
         {
-            return _ctx.Stores.FirstOrDefault(Store => Store.EntityId == long.Parse(id));
+            return _ctx.Stores.Include(store => store.Orders).ThenInclude(order => order.Pizzas).ThenInclude(pizza => pizza.Crust).
+            Include(store => store.Orders).ThenInclude(order => order.Pizzas).ThenInclude(pizza => pizza.Size).
+            Include(store => store.Orders).ThenInclude(Order => Order.Pizzas).ThenInclude(pizza => pizza.Toppings).
+            FirstOrDefault(Store => Store.EntityId == long.Parse(id));
         }
         public void AddOrder(Order order)
         {
