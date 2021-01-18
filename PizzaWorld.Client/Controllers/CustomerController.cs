@@ -21,6 +21,7 @@ namespace PizzaWorld.Client.Controllers
                 Stores = _ctx.GetStores().ToList()
             };
             return View("home",customer);
+            
         }
     }
 }

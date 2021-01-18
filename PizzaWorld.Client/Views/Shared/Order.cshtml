@@ -11,6 +11,8 @@
     {
         <input type="checkbox" name="PizzaSelection" id="@pizza.Name" value="@pizza.Name">
         <label for="@pizza.Name">@pizza.Name</label>
+        @Html.Partial("Size", pizza.Size)
+        @Html.Partial("Crust", pizza.Crust)
     }
     <button type="submit">Place Order</button>
 

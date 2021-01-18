@@ -1,0 +1,7 @@
+@model PizzaWorld.Client.Models.CrustViewModel
+
+@foreach(var crust in Model.Crusts)
+{
+    <input type="radio" Name="Crust" id="@crust.Name" value="@crust.Name">
+    <label for="@crust.Name">@crust.Name</label>
+}

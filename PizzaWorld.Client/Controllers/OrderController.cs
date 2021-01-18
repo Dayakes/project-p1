@@ -25,21 +25,21 @@ namespace PizzaWorld.Client.Controllers
             {
                 Order order = new Order();
                 order.DateModified = System.DateTime.Now;
-                order.store = _ctx.Get<Store>(int.Parse(model.Store));
-
-                foreach (var pizza in model.PizzaSelection)
+                order.store = _ctx.Get<Store>(long.Parse(model.Store));
+                var i = 0;
+                foreach (var pizza in model.Pizzas)
                 {
                     if (pizza.Equals("Meat Pizza"))
                     {
-                        order.Pizzas.Add(new MeatPizza());
+                        order.Pizzas.Add(new MeatPizza(pizza.Size.Sizes[i],pizza.Crust.Crusts[i]));
                     }
                     else if (pizza.Equals("Veggie Pizza"))
                     {
-                        order.Pizzas.Add(new VeggiePizza());
+                        order.Pizzas.Add(new VeggiePizza(new Size(pizza.Size.ToString()), new Crust(pizza.Crust.ToString())));
                     }
                     else if (pizza.Equals("Hawaiian Pizza"))
                     {
-                        order.Pizzas.Add(new HawaiianPizza());
+                        order.Pizzas.Add(new HawaiianPizza(new Size(pizza.Size.ToString()), new Crust(pizza.Crust.ToString())));
                     }
                 }
 

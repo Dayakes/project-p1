@@ -6,7 +6,7 @@ using PizzaWorld.Domain.Models;
 public class PizzaWorldContext : DbContext
 {
     public DbSet<Store> Stores { get; set; }
-    // public DbSet<User> Users { get; set; }
+    public DbSet<User> Users { get; set; }
     public DbSet<Crust> Crusts { get; set; }
     public DbSet<Size> Sizes { get; set; }
     public DbSet<Order> Orders { get; set; }
@@ -25,7 +25,7 @@ public class PizzaWorldContext : DbContext
 
         builder.Entity<Order>().HasKey(order => order.EntityId);
 
-        // builder.Entity<User>().HasKey(u => u.EntityId);
+        builder.Entity<User>().HasKey(u => u.EntityId);
 
         builder.Entity<APizzaModel>().HasKey(pizza => pizza.EntityId);
         builder.Entity<APizzaModel>().OwnsOne(pizza => pizza.Crust);
@@ -45,9 +45,9 @@ public class PizzaWorldContext : DbContext
                 new Store(){Name = "Pizza Hut",EntityId = System.DateTime.Now.Ticks}
             }
         );
-        // builder.Entity<User>().HasData(new List<User>
-        // {
-        //     new User(){Name = "Darren",EntityId = System.DateTime.Now.Ticks},
-        // });
+        builder.Entity<User>().HasData(new List<User>
+        {
+            new User(){Name = "Darren",EntityId = System.DateTime.Now.Ticks},
+        });
     }
 }

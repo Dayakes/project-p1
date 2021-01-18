@@ -15,15 +15,15 @@ namespace PizzaWorld.Domain.Models
         public Size(string name)
         {
             Name = name;
-            if(Name.Equals("Small"))
+            if(Name.Equals("small"))
             {
                 Price = 5;
             }
-            else if(Name.Equals("Medium"))
+            else if(Name.Equals("medium"))
             {
                 Price = 6;
             }
-            else if(Name.Equals("Large"))
+            else if(Name.Equals("large"))
             {
                 Price = 7;
             }

@@ -5,6 +5,8 @@ namespace PizzaWorld.Client.Models
 {
     public class SizeViewModel
     {
+        public string PizzaName { get; set; }
+        public List<Size> Sizes { get; set; }
         public SizeViewModel()
         {
             Sizes = new List<Size>(){
@@ -13,7 +15,5 @@ namespace PizzaWorld.Client.Models
                 new Size("large")
             };
         }
-        public List<Size> Sizes { get; set; }
-        public string Name { get; set; }
     }
 }

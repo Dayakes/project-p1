@@ -8,6 +8,7 @@ namespace PizzaWorld.Storing
     public class PizzaWorldRepository
     {
         private PizzaWorldContext _ctx;
+        private int MyProperty { get; set; }
 
         public PizzaWorldRepository(PizzaWorldContext context)
         {
@@ -21,7 +22,7 @@ namespace PizzaWorld.Storing
         {
             return _ctx.Set<T>().ToList();
         }
-        public T Get<T>(int id) where T : AModel
+        public T Get<T>(long id) where T : AModel
         {
             return _ctx.Set<T>().Find(id);
         }

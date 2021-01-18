@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PizzaWorld.Storing.Migrations
 {
-    public partial class resetdbagain : Migration
+    public partial class seedingusers : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,6 +21,19 @@ namespace PizzaWorld.Storing.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    EntityId = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.EntityId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
@@ -28,7 +41,8 @@ namespace PizzaWorld.Storing.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StoreEntityId = table.Column<long>(type: "bigint", nullable: false),
                     DateModified = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TotalPrice = table.Column<double>(type: "float", nullable: false)
+                    TotalPrice = table.Column<double>(type: "float", nullable: false),
+                    UserEntityId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -39,6 +53,12 @@ namespace PizzaWorld.Storing.Migrations
                         principalTable: "Stores",
                         principalColumn: "EntityId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Users_UserEntityId",
+                        column: x => x.UserEntityId,
+                        principalTable: "Users",
+                        principalColumn: "EntityId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -125,17 +145,27 @@ namespace PizzaWorld.Storing.Migrations
             migrationBuilder.InsertData(
                 table: "Stores",
                 columns: new[] { "EntityId", "Name" },
-                values: new object[] { 637462398846049038L, "Dominos" });
+                values: new object[] { 637465581600359671L, "Dominos" });
 
             migrationBuilder.InsertData(
                 table: "Stores",
                 columns: new[] { "EntityId", "Name" },
-                values: new object[] { 637462398846060592L, "Pizza Hut" });
+                values: new object[] { 637465581600371133L, "Pizza Hut" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "EntityId", "Name" },
+                values: new object[] { 637465581600381153L, "Darren" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_StoreEntityId",
                 table: "Orders",
                 column: "StoreEntityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_UserEntityId",
+                table: "Orders",
+                column: "UserEntityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pizzas_OrderEntityId",
@@ -167,6 +197,9 @@ namespace PizzaWorld.Storing.Migrations
 
             migrationBuilder.DropTable(
                 name: "Stores");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }
