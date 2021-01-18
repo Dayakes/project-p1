@@ -1,18 +1,14 @@
 @model PizzaWorld.Client.Models.LoginViewModel
 @{
+    TempData.Clear();
     ViewBag.Title = "Customer - Login";
     Layout = "_CustomLayout";
 }
-<form asp-controller="Customer" asp-action="Welcome">
+<form method="POST" asp-controller="Customer" asp-action="Welcome">
 @foreach(var user in Model.AllUsers)
 {
-    <input type="radio" name="CurrentUserId" id="@user.Name" value="@user.EntityId">
-    <input type="hidden" name="CurrentUserName" value="@user.Name">
-    <label for="@user.Name">@user.Name</label>
+    <input type="radio" name="CurrentUserId" id="@user.EntityId" value="@user.EntityId">
+    <label for="@user.EntityId">@user.Name</label>
 }
 <button>Sign In</button>
-</form>
-<form>
-    <input type="text" name="NewUser" value="Enter First Name">
-    <button>New User</button>
 </form>

@@ -14,15 +14,15 @@ namespace PizzaWorld.Domain.Models
         public Crust(string name)
         {
             Name = name;
-            if(Name.Equals("Flatbread"))
+            if(Name.Equals("thin"))
             {
                 Price = 5;
             }
-            else if(Name.Equals("Regular"))
+            else if(Name.Equals("regular"))
             {
                 Price = 6;
             }
-            else if(Name.Equals("Stuffed"))
+            else if(Name.Equals("stuffed"))
             {
                 Price = 8;
             }

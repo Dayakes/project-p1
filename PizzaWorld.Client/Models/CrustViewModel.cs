@@ -5,17 +5,11 @@ namespace PizzaWorld.Client.Models
 {
     public class CrustViewModel
     {
-        public List<Crust> Crusts { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
 
-        public CrustViewModel()
+        public CrustViewModel(string name)
         {
-            Crusts = new List<Crust>{
-                new Crust("regular"),
-                new Crust("thin"),
-                new Crust("stuffed")
-            };
+            Name = name;
         }
     }
 }

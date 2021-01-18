@@ -4,14 +4,21 @@
     ViewBag.Title = "Customer - Home";
     Layout = "_CustomLayout";
 }
-<section>
-    Hello @Model.Name
+<section class="col-12">
+    Hello @ViewBag.CustomerName
+    
+    <form asp-controller="Order" asp-action="StartNewOrder" method="POST">
+        @foreach(var store in Model.Order.Stores)
+        {
+            <input type="radio" name="SelectedStoreId" id="@store.EntityId" value="@store.EntityId">
+            <label for="@store.EntityId">@store.Name</label>
+        }
+        <input type="hidden" name="UserId" value="@Model.UserId">
+        <button type="submit">Start New Order</button>
+    </form>
 </section>
 
-<form asp-controller="Order" asp-action="StartNewOrder">
-    <button type="submit">Start New Order</button>
-</form>
-
-<section>
-
+<section class="col-12">
+    @Html.Partial("OrderHistory" , Model.CurrentUser)
 </section>
+@Html.Partial("logout")

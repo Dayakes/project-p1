@@ -19,23 +19,9 @@ namespace PizzaWorld.Domain.Models
         public Store store { get; set; }
         public List<APizzaModel> Pizzas { get; set; }
         public long StoreEntityId { get; set; }
+        public long UserEntityId { get; set; }
         public DateTime DateModified { get; set; }
         public double TotalPrice { get; set; }
-        // {
-        //     get
-        //     {
-        //         double calc = 0;
-        //         foreach (APizzaModel pizza in Pizzas)
-        //         {
-        //             calc = calc + pizza.Price;
-        //         }
-        //         return calc;
-        //     }
-        //     set
-        //     {
-        //         ComputePrice();
-        //     }
-        // }
         public Order()
         {
             Pizzas = new List<APizzaModel>();
@@ -58,14 +44,14 @@ namespace PizzaWorld.Domain.Models
             sb.AppendLine("::: END OF ORDER :::\n");
             return sb.ToString();
         }
-        public double ComputePrice()
+        public void ComputePrice()
         {
             double calc = 0;
             foreach (APizzaModel pizza in Pizzas)
             {
                 calc = calc + pizza.Price;
             }
-            return calc;
+            TotalPrice = calc;
         }
     }
 }

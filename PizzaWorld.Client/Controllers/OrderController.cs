@@ -17,43 +17,66 @@ namespace PizzaWorld.Client.Controllers
         {
             _ctx = context;
         }
+        [Route("[action]")]
         [HttpPost]
         public IActionResult StartNewOrder(CustomerViewModel customer)
         {
-            return View("OrderOverview", new OrderViewModel());
+            TempData.Put<string>("SelectedStoreId", customer.SelectedStoreId);
+            TempData.Put<string>("CurrentUserId", customer.UserId);
+            return View("OrderOverview", customer.Order);
         }
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public IActionResult Post(OrderViewModel model)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         Order order = new Order();
-        //         order.DateModified = System.DateTime.Now;
-        //         order.store = _ctx.Get<Store>(long.Parse(model.Store));
-        //         var i = 0;
-        //         foreach (var pizza in model.Pizzas)
-        //         {
-        //             if (pizza.Equals("Meat Pizza"))
-        //             {
-        //                 order.Pizzas.Add(new MeatPizza(pizza.Size.Sizes[i],pizza.Crust.Crusts[i]));
-        //             }
-        //             else if (pizza.Equals("Veggie Pizza"))
-        //             {
-        //                 order.Pizzas.Add(new VeggiePizza(new Size(pizza.Size.ToString()), new Crust(pizza.Crust.ToString())));
-        //             }
-        //             else if (pizza.Equals("Hawaiian Pizza"))
-        //             {
-        //                 order.Pizzas.Add(new HawaiianPizza(new Size(pizza.Size.ToString()), new Crust(pizza.Crust.ToString())));
-        //             }
-        //         }
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult AddPizza(OrderViewModel order)
+        {
+            if (TempData.Get<List<PizzaViewModel>>("PizzaList") is not null)
+            {
+                order.WorkingPizzaList = TempData.Get<List<PizzaViewModel>>("PizzaList");
+            }
 
-        //         _ctx.AddOrder(order);
-        //         _ctx.Update();
+            order.WorkingPizzaList.Add(new PizzaViewModel(order.PizzaName, order.PizzaSize, order.PizzaCrust));
 
-        //         return View("OrderPass");
-        //     }
-        //     return View("OrderFail", model);
-        // }
+            TempData.Put<List<PizzaViewModel>>("PizzaList", order.WorkingPizzaList);
+
+            return View("OrderOverview", order);
+
+        }
+        [Route("[action]")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SubmitOrder(OrderViewModel model)
+        {
+                model.WorkingPizzaList = TempData.Get<List<PizzaViewModel>>("PizzaList");
+                TempData.Remove("PizzaList");
+
+                Order order = new Order();
+                order.DateModified = System.DateTime.Now;
+                order.StoreEntityId = long.Parse(TempData.Get<string>("SelectedStoreId"));
+                order.UserEntityId = long.Parse(TempData.Get<string>("CurrentUserId"));
+                
+                foreach(var pizza in model.WorkingPizzaList)
+                {
+                    if(pizza.Name.Equals("MeatPizza"))
+                    {
+                        order.Pizzas.Add(new MeatPizza(new Size(pizza.Size),new Crust(pizza.Crust)));
+                    }
+                    else if(pizza.Name.Equals("VeggiePizza"))
+                    {
+                        order.Pizzas.Add(new VeggiePizza(new Size(pizza.Size),new Crust(pizza.Crust)));
+                    }
+                    else if(pizza.Name.Equals("HawaiianPizza"))
+                    {
+                        order.Pizzas.Add(new HawaiianPizza(new Size(pizza.Size),new Crust(pizza.Crust)));
+                    }
+                }
+                
+                order.ComputePrice();
+                
+
+                _ctx.AddOrder(order);
+                _ctx.Update();
+
+                return View("OrderPass");
+        }
     }
 }

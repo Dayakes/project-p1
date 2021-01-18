@@ -1,0 +1,7 @@
+@model PizzaWorld.Domain.Models.User
+@foreach (var order in Model.Orders)
+{
+    <div class="row">
+        <h3>Order @order.EntityId : has @order.Pizzas.Count Pizzas and cost: $@order.TotalPrice</h3>
+    </div>
+}

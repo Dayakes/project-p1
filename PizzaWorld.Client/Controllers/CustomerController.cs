@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Web;
 using Microsoft.AspNetCore.Mvc;
 using PizzaWorld.Client.Models;
@@ -26,13 +27,22 @@ namespace PizzaWorld.Client.Controllers
         }
         public IActionResult Welcome(LoginViewModel LoginModel)
         {
+            User CurrentUser = _ctx.GetUser(long.Parse(LoginModel.CurrentUserId));
+
             var customer = new CustomerViewModel();
-            customer.UserId = long.Parse(LoginModel.CurrentUserId);
-            customer.Name = LoginModel.CurrentUserName;
+            customer.UserId = CurrentUser.EntityId.ToString();
+            customer.Name = CurrentUser.Name;
+            
+            customer.CurrentUser = CurrentUser;
+
+            TempData.Put<CustomerViewModel>("CurrentCustomer" , customer);
+
+            ViewBag.CustomerName = CurrentUser.Name;
 
             customer.Order = new OrderViewModel(){
                 Stores = _ctx.GetStores().ToList()
             };
+
             return View("home",customer);
         }
         //new action NewUser()

@@ -5,33 +5,47 @@
 }
 
 
-<form>
-    <section class="container">
+<form class="col-6" asp-action="addpizza" asp-controller="order" method="POST">
+    @Html.AntiForgeryToken()
+    <div class="container">
         <h3>Select a Pizza</h3>
-        @foreach (var pizza in Model.Pizzas)
+        @foreach (var pizza in Model.AllPizzas)
         {
-            <input type="radio" name="Pizza" id="@pizza.Name" value="@pizza.Name" required>
+            <input type="radio" name="PizzaName" id="@pizza.Name" value="@pizza.Name" required>
             <label for="@pizza.Name">@pizza.Name</label>
         }
-    </section>
-    <section class="container">
-        <h3>Select a Size</h3>
-        <input type="radio" name="Size" value="small" id="small" required>
-        <label for="small">Small</label>
-        <input type="radio" name="Size" value="medium" id="medium">
-        <label for="medium">Medium</label>
-        <input type="radio" name="Size" value="large" id="large">
-        <label for="large">Large</label>
-    </section>
+    </div>
 
-    <section class="container">
+    <div class="container">
+        <h3>Select a Size</h3>
+        @foreach(var size in Model.WorkingPizza.AllSizes)
+        {
+            <input type="radio" name="PizzaSize" id="@size.Name" value="@size.Name">
+            <label for="@size.Name">@size.Name</label>
+        }
+    </div>
+
+    <div class="container">
         <h3>Select a Crust</h3>
-        <input type="radio" name="Crust" value="thin" id="thin" required>
-        <label for="thin">Thin</label>
-        <input type="radio" name="Crust" value="regular" id="regular">
-        <label for="regular">Regular</label>
-        <input type="radio" name="Crust" value="stuffed" id="stuffed">
-        <label for="stuffed">Stuffed</label>
-    </section>
+        @foreach(var crust in Model.WorkingPizza.AllCrusts)
+        {
+            <input type="radio" name="PizzaCrust" id="@crust.Name" value="@crust.Name">
+            <label for="@crust.Name">@crust.Name</label>
+        }
+    </div>
+
     <button type="submit">Add Pizza to Order</button>
+
+</form>
+<form asp-controller="Order" asp-action="SubmitOrder"  method="POST">
+    @Html.AntiForgeryToken()
+    <h2>Here are the pizzas in your order:</h2>
+    @if(Model.WorkingPizzaList is not null)
+    {
+        @foreach(PizzaViewModel pizza in Model.WorkingPizzaList)
+        {
+            @Html.Partial("Pizza" , pizza)
+        }
+    }   
+    <button type="submit">Submit Order</button>
 </form>

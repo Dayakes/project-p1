@@ -7,7 +7,7 @@
         <input type="radio" name="Store" id="@store.EntityId" value="@store.EntityId">
         <label for="@store.EntityId">@store.Name</label>
     }
-    @foreach (var pizza in Model.Pizzas)
+    @foreach (var pizza in Model.AllPizzas)
     {
         <input type="checkbox" name="PizzaSelection" id="@pizza.Name" value="@pizza.Name">
         <label for="@pizza.Name">@pizza.Name</label>

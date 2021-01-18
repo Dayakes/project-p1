@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using PizzaWorld.Domain.Abstracts;
 using PizzaWorld.Domain.Models;
 
@@ -25,7 +26,10 @@ namespace PizzaWorld.Storing
         }
         public User GetUser(long id)
         {
-            return _ctx.Users.FirstOrDefault(user => user.EntityId == id);
+            return _ctx.Users.Include(user => user.Orders).ThenInclude(order => order.Pizzas).ThenInclude(pizza => pizza.Crust).
+            Include(user => user.Orders).ThenInclude(order => order.Pizzas).ThenInclude(pizza => pizza.Size).
+            Include(user => user.Orders).ThenInclude(Order => Order.Pizzas).ThenInclude(pizza => pizza.Toppings).
+            FirstOrDefault(user => user.EntityId == id);
         }
         public IEnumerable<T> GetAll<T>() where T : AModel
         {
