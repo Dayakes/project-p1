@@ -21,6 +21,15 @@ namespace PizzaWorld.Testing
             Assert.IsType<Size>(actual);
             Assert.NotNull(actual);
         }
+        [Fact]
+        private void Test_HasPrice()
+        {
+            var sut = new Size("small");
+
+            var actual = sut;
+
+            Assert.NotNull(actual.Price);
+        }
         
     }
 }

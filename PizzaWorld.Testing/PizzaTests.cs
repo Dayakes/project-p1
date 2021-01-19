@@ -17,13 +17,23 @@ namespace PizzaWorld.Testing
             Assert.NotNull(actual);
         }
         [Fact]
-         private void Test_HasSize()
-         {
-             var sut = new MeatPizza();
+        private void Test_HasSizeAndCrust()
+        {
+            var sut = new MeatPizza(new Size(), new Crust());
 
-             var actual = sut;
+            var actual = sut;
 
-             Assert.IsType<Size>(actual.Size);
-         }
+            Assert.IsType<Size>(actual.Size);
+            Assert.IsType<Crust>(actual.Crust);
+        }
+        [Fact]
+        private void Test_ComputesPrice()
+        {
+            var sut = new MeatPizza(new Size("small"), new Crust("regular"));
+
+            var actual = sut;
+
+            Assert.NotNull(actual.Price);
+        }
     }
 }
