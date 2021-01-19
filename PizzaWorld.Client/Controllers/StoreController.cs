@@ -19,6 +19,7 @@ namespace PizzaWorld.Client.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            TempData.Clear();
             var StoreLoginModel = new StoreLoginViewModel();
             StoreLoginModel.AllStores = _ctx.GetStores().ToList();
 

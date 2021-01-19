@@ -21,6 +21,7 @@ namespace PizzaWorld.Client.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            TempData.Clear();
             var LoginModel = new LoginViewModel();
             LoginModel.AllUsers = _ctx.GetUsers().ToList(); 
 
@@ -46,6 +47,6 @@ namespace PizzaWorld.Client.Controllers
 
             return View("home",customer);
         }
-        //new action NewUser()
+        
     }
 }
