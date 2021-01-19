@@ -37,16 +37,12 @@ namespace PizzaWorld.Client.Controllers
             
             customer.CurrentUser = CurrentUser;
 
-            TempData.Put<CustomerViewModel>("CurrentCustomer" , customer);
-
             ViewBag.CustomerName = CurrentUser.Name;
 
             customer.Order = new OrderViewModel(){
                 Stores = _ctx.GetStores().ToList()
             };
-
             return View("home",customer);
         }
-        
     }
 }

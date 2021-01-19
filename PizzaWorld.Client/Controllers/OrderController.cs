@@ -70,8 +70,7 @@ namespace PizzaWorld.Client.Controllers
                     }
                 }
                 
-                order.ComputePrice();
-                
+                order.ComputePrice();                
 
                 _ctx.AddOrder(order);
                 _ctx.Update();
