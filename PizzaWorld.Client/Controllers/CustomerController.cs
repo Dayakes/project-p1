@@ -9,6 +9,7 @@ using PizzaWorld.Storing;
 
 namespace PizzaWorld.Client.Controllers
 {
+    [Route("")]
     [Route("[controller]")]
     public class CustomerController : Controller
     {
