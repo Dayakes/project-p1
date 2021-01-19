@@ -7,7 +7,7 @@
 <form method="POST" asp-controller="Store" asp-action="Welcome">
 @foreach(var store in Model.AllStores)
 {
-    <input type="radio" name="CurrentStoreId" id="@store.EntityId" value="@store.EntityId">
+    <input type="radio" name="CurrentStoreId" id="@store.EntityId" value="@store.EntityId" required>
     <label for="@store.EntityId">@store.Name</label>
 }
 <button>Sign In</button>

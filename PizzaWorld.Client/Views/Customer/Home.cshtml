@@ -10,7 +10,7 @@
     <form asp-controller="Order" asp-action="StartNewOrder" method="POST">
         @foreach(var store in Model.Order.Stores)
         {
-            <input type="radio" name="SelectedStoreId" id="@store.EntityId" value="@store.EntityId">
+            <input type="radio" name="SelectedStoreId" id="@store.EntityId" value="@store.EntityId" required>
             <label for="@store.EntityId">@store.Name</label>
         }
         <input type="hidden" name="UserId" value="@Model.UserId">

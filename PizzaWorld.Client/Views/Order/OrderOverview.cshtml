@@ -20,7 +20,7 @@
         <h3>Select a Size</h3>
         @foreach(var size in Model.WorkingPizza.AllSizes)
         {
-            <input type="radio" name="PizzaSize" id="@size.Name" value="@size.Name">
+            <input type="radio" name="PizzaSize" id="@size.Name" value="@size.Name" required>
             <label for="@size.Name">@size.Name</label>
         }
     </div>
@@ -29,7 +29,7 @@
         <h3>Select a Crust</h3>
         @foreach(var crust in Model.WorkingPizza.AllCrusts)
         {
-            <input type="radio" name="PizzaCrust" id="@crust.Name" value="@crust.Name">
+            <input type="radio" name="PizzaCrust" id="@crust.Name" value="@crust.Name" required>
             <label for="@crust.Name">@crust.Name</label>
         }
     </div>
