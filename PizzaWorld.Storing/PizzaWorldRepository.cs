@@ -31,22 +31,6 @@ namespace PizzaWorld.Storing
             Include(user => user.Orders).ThenInclude(Order => Order.Pizzas).ThenInclude(pizza => pizza.Toppings).
             FirstOrDefault(user => user.EntityId == id);
         }
-        public IEnumerable<T> GetAll<T>() where T : AModel
-        {
-            return _ctx.Set<T>().ToList();
-        }
-        public T Get<T>(long id) where T : AModel
-        {
-            return _ctx.Set<T>().Find(id);
-        }
-        public void Add<T>(T item) where T : AModel
-        {
-            _ctx.Set<T>().Add(item);
-        }
-        public void Remove<T>(T item) where T : AModel
-        {
-            _ctx.Set<T>().Remove(item);
-        }
         public Store GetStore(string id)
         {
             return _ctx.Stores.Include(store => store.Orders).ThenInclude(order => order.Pizzas).ThenInclude(pizza => pizza.Crust).
